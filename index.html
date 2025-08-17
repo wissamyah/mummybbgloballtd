@@ -83,11 +83,15 @@
         }
         
         .nav-links a {
-            color: var(--text-light);
+            color: var(--primary-gold);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light-gold);
         }
         
         .nav-links a::after {
@@ -617,6 +621,209 @@
             transform: translateY(-5px);
             border-color: rgba(212, 175, 55, 0.3);
         }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+        
+        .hamburger:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75vw;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, rgba(26, 29, 41, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .mobile-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            letter-spacing: -0.5px;
+        }
+        
+        .mobile-nav-close {
+            background: transparent;
+            border: none;
+            color: var(--primary-gold);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-nav-close:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 2rem 0;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 1rem 2rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-nav-link::before {
+            content: "";
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.4s ease;
+        }
+        
+        .mobile-nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .mobile-nav-link:hover {
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(10px);
+        }
+        
+        /* Scroll to Top Arrow */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #b8860b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .scroll-to-top span {
+            color: var(--deep-black);
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+        
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Responsive */
         
         @media (max-width: 768px) {
@@ -624,8 +831,19 @@
                 padding: 1rem;
             }
             .nav-links {
-                display: none;
+                display: none !important;
             }
+            .hamburger {
+                display: flex !important;
+            }
+        }
+        
+        /* For testing - shows hamburger on larger screens too */
+        @media (max-width: 1024px) {
+            .hamburger {
+                display: flex;
+            }
+        }
             .about-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -913,8 +1131,37 @@
                 <li><a href="#products">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="mobile-logo">MUMMY'BB</div>
+            <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#products" class="mobile-nav-link">Products</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Scroll to Top Arrow -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <span>↑</span>
+    </div>
 
     <section id="home" class="hero">
         <div class="hero-bg"></div>
@@ -1696,6 +1943,105 @@
         } else {
             console.log('Document already loaded, running initializeModal immediately...');
             initializeModal();
+        }
+
+        // Mobile Navigation and Scroll to Top functionality
+        function initializeMobileNavAndScroll() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const scrollToTop = document.getElementById('scrollToTop');
+
+            console.log('Mobile nav elements found:', {
+                hamburger: !!hamburger,
+                mobileNav: !!mobileNav,
+                mobileNavOverlay: !!mobileNavOverlay,
+                mobileNavClose: !!mobileNavClose,
+                scrollToTop: !!scrollToTop,
+                screenWidth: window.innerWidth
+            });
+
+            // Mobile Navigation Toggle
+            function openMobileNav() {
+                hamburger.classList.add('active');
+                mobileNav.classList.add('active');
+                mobileNavOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileNav() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = 'visible';
+            }
+
+            // Event listeners for mobile navigation
+            if (hamburger) {
+                hamburger.addEventListener('click', openMobileNav);
+            }
+
+            if (mobileNavClose) {
+                mobileNavClose.addEventListener('click', closeMobileNav);
+            }
+
+            if (mobileNavOverlay) {
+                mobileNavOverlay.addEventListener('click', closeMobileNav);
+            }
+
+            // Close mobile nav when clicking on a link
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileNav);
+            });
+
+            // Scroll to Top functionality
+            function toggleScrollToTop() {
+                if (window.pageYOffset > 300) {
+                    scrollToTop.classList.add('visible');
+                } else {
+                    scrollToTop.classList.remove('visible');
+                }
+            }
+
+            function scrollToTopSmooth() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Event listeners for scroll to top
+            if (scrollToTop) {
+                scrollToTop.addEventListener('click', scrollToTopSmooth);
+            }
+
+            // Show/hide scroll to top button on scroll
+            window.addEventListener('scroll', toggleScrollToTop);
+
+            // Close mobile nav on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    closeMobileNav();
+                }
+            });
+
+            // Close mobile nav on window resize if it's open
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
+                    closeMobileNav();
+                }
+            });
+        }
+
+        // Initialize mobile nav and scroll functionality
+        document.addEventListener('DOMContentLoaded', initializeMobileNavAndScroll);
+        window.addEventListener('load', initializeMobileNavAndScroll);
+
+        // Immediate check for mobile nav setup
+        if (document.readyState !== 'loading') {
+            initializeMobileNavAndScroll();
         }
     </script>
 
